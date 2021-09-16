@@ -18,11 +18,15 @@ class App extends React.Component  {
 
   render(){
     return (
-      <div className="App a">
+      <div >
         <p>Order</p>
         <Tag />
         <Button type="primary"> 点击我  </Button>
+        
+        <div className="a"></div>
       </div>
+
+   
     );
   }
 }

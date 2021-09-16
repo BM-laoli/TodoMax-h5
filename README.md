@@ -41,8 +41,40 @@
 
 ## 3. 自定义webpack配置
 
+方式1: 这里没有什么需要做过多的说明，只有一点🤏 需要说明的是 ，你可以使用 react-app-rewired 官方提供了一个合并 webpack config的api  - （ overrides ）建议使用，这个方式1
+方式2:  方式2 是自己写一个与customize-cra 类似的东西就想下面这个东西一样
+
+```js
+// 打包配置
+const addCustomize = () => config => {
+  if (process.env.NODE_ENV === 'production') {
+    // 关闭sourceMap
+    config.devtool = false;
+    // 配置打包后的文件位置
+    config.output.path = __dirname + '../dist/demo/';
+    config.output.publicPath = './demo';
+    // 添加js打包gzip配置
+    config.plugins.push(
+      new CompressionWebpackPlugin({
+        test: /\.js$|\.css$/,
+        threshold: 1024,
+      }),
+    )
+  }
+  return config;
+}
+
+// 后面的用途 直接丢在 就好了
+override( addCustomize() ，....)
+```
+
 ## 4. 集成antd-mobile
 
 > 这一步非常简单，官方给出了基础都CRA 脚手架的指南，它非常的简单 和我们的使用的react-app-rewired 是配套的，所以集成进来非常的简单
+
+## 5. 集成H5的rem
+
+> 详细的在这个文章： <https://blog.csdn.net/kuangshp128/article/details/108396851>
+需要特别强调是 如果你安装教程作之后有 报错说你版本的问题，不用担心 降版本就好了  降低到我这个5的版本（post-css）
 
 # 看看如何配置工程化 和 优化dev 和build的体验
