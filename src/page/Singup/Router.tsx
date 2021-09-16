@@ -1,9 +1,10 @@
 import React from 'react';
-import './index.scss';
+import './App.css';
+
 function App() {
   return (
-    <div className="App app-scss ">
-      <p>SellerAppH5</p>
+    <div className="App">
+      <p>我是Router</p>
     </div>
   );
 }
